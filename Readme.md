@@ -1,4 +1,4 @@
-# docker-django-usgi-nginx
+# docker-django-uwsgi-nginx
 
 A dockerfile to run either an empty django project, or your own app copied in the “app” folder.
 Based on an up-to-date CentOS 7 image.
