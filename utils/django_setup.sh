@@ -30,4 +30,4 @@ chown -R djangouser:nginx /${DOMAIN}/code/${APP_NAME}/
 chmod u+x,g+x /${DOMAIN}/code/
 
 # keep domain name
-echo "${DOMAIN} > /.domain"
+echo "${DOMAIN}" > /.domain

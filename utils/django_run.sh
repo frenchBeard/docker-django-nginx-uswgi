@@ -1,8 +1,8 @@
 #! /bin/bash
 
-# Background uswgi
+# Background uwsgi
 DOMAIN=$(cat /.domain)
-uswgi --ini /${DOMAIN}/config/django.ini --uid 1000 --gid 1000 &
+uwsgi --uid djangouser --gid nginx --ini /${DOMAIN}/config/django.ini
 
 # Start nginx
 exec nginx

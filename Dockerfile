@@ -11,7 +11,7 @@ RUN yum install -y python-pip python-setuptools nginx gcc python-devel unzip wge
 RUN pip install uwsgi
 
 # Adding user to manage application
-RUN mkdir /${DOMAIN}
+RUN mkdir -p /${DOMAIN}/run
 RUN adduser --home=/${DOMAIN}/code/ -u 1000 djangouser
 
 # Setting up configuration
@@ -26,14 +26,14 @@ RUN ln -s /${DOMAIN}/config/nginx.conf /etc/nginx/nginx.conf
 RUN pip install -r /${DOMAIN}/config/requirements.txt
 
 # Adding utils
-ADD utils       /${DOMAIN}/utils
-RUN chmod 700   /${DOMAIN}/utils/*
+ADD utils       /utils
+RUN chmod 700   /utils/*
 
-RUN /${DOMAIN}/utils/django_setup.sh
+RUN /utils/django_setup.sh
 
 # Make nginx default log location mountable
 VOLUME ["/var/log/nginx"]
 
 EXPOSE ${PORT}
 
-CMD ["/${DOMAIN}/utils/run.sh"]
+CMD ["/utils/django_run.sh"]
